@@ -5,7 +5,7 @@ pipeline {
         maven "Maven3"
     }
     environment {
-        APP_NAME = "complete-prodcution-e2e-pipeline"
+        APP_NAME = "makaan"
         RELEASE = "1.0.0"
         DOCKER_USER = "krishnamsg"
         DOCKER_PASS = 'dockerhub'
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Checkout From SCM') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/krishnamsg/complete-prodcution-e2e-pipeline.git'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/krishnamsg/makaan.git'
             }
         }
                 stage('Build Application') {
