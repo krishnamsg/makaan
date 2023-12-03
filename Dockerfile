@@ -5,7 +5,7 @@ FROM tomcat:9.0-jdk11-openjdk-slim
 WORKDIR /usr/local/tomcat/webapps/
 
 # Copy the war file into the container at the Tomcat webapps directory
-COPY target/*.war .
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 # Expose the port that Tomcat will run on
 EXPOSE 8080
