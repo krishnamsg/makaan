@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Checkout From SCM') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/krishnamsg/makaan.git'
+                git branch: 'version1', credentialsId: 'github', url: 'https://github.com/krishnamsg/makaan.git'
             }
         }
                 stage('Build Application') {
