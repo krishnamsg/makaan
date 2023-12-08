@@ -5,6 +5,7 @@ pipeline {
         maven "Maven3"
     }
     environment {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter the branch name')
         APP_NAME = "complete-production-e2e-makaan-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "krishnamsg"
@@ -19,9 +20,13 @@ pipeline {
                 cleanWs()
             }
         }
-        stage('Checkout From SCM') {
+    stages {
+        stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/krishnamsg/makaan.git'
+                script {
+                    // Checkout the code from GitHub based on the specified branch
+                    checkout([$class: 'GitSCM', branches: [[name: params.BRANCH_NAME]], userRemoteConfigs: [[url: 'https://github.com/krishnamsg/makaan.git']]])
+                }
             }
         }
                 stage('Build Application') {
