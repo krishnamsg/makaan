@@ -4,8 +4,10 @@ pipeline {
         jdk "Java17"
         maven "Maven3"
     }
-    environment {
+    parameters {
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter the branch name')
+    }
+    environment {
         APP_NAME = "complete-production-e2e-makaan-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "krishnamsg"
