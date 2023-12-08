@@ -22,7 +22,6 @@ pipeline {
                 cleanWs()
             }
         }
-    stages {
         stage('Checkout') {
             steps {
                 script {
@@ -31,19 +30,19 @@ pipeline {
                 }
             }
         }
-                stage('Build Application') {
+            stage('Build Application') {
             steps {
                 sh "mvn clean install"
             }
         }
-        stage('Test Application') {
+            stage('Test Application') {
             steps {
                 sh 'mvn test'
             }
         }
-/*        stage('SonarQube Analysis') {
-            steps {
-                script{
+/*          stage('SonarQube Analysis') {
+                steps {
+                 script{
                     withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') {
                         sh 'mvn sonar:sonar'
                     }
@@ -51,8 +50,8 @@ pipeline {
             }
       }
 */
-        stage("Build & Push Docker Image") {
-            steps {
+            stage("Build & Push Docker Image") {
+             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}"
@@ -65,7 +64,7 @@ pipeline {
                 }
             }
 
-        }
+            }
          stage("Trigger CD Pipeline") {
             steps {
                 script {
